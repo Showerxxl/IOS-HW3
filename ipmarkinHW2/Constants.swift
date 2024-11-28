@@ -22,6 +22,7 @@ enum Constants {
     
     static let dist: CGFloat = 20
     
-    
+    static let tableCornerRadius: CGFloat = 20
+    static let tableOffset: CGFloat = 20
 }
 

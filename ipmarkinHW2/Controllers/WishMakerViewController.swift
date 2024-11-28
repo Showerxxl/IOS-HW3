@@ -13,6 +13,7 @@ final class WishMakerViewController: UIViewController {
         configureSliders()
         configureAddWishButton()
         setupConstraints()
+        
     }
 
     private func configureTitle() {
@@ -81,6 +82,7 @@ final class WishMakerViewController: UIViewController {
     }
     @objc
     private func addWishButtonPressed() {
+        present(WishStoringViewController(), animated: true)
     }
 
 }
