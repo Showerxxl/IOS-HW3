@@ -7,17 +7,20 @@ enum Constants {
     static let red = "Red"
     static let green = "Green"
     static let blue = "Blue"
+    static let transparency: CGFloat = 1
 
     static let stackRadius: CGFloat = 20
-    static let stackBottom: CGFloat = -40
-    static let stackLeading: CGFloat = 20
+    static let stackBottom: CGFloat = -150
+    static let stackSide: CGFloat = 20
     static let baseValue: CGFloat = 0
     
-    static let buttonHeight: CGFloat = 10
-    static let buttonBottom: CGFloat = 10
-    static let buttonSide: CGFloat = 10
-    static let buttonRadius: CGFloat = 15
+    static let buttonHeight: CGFloat = 50
+    static let buttonBottom: CGFloat = 50
+    static let buttonSide: CGFloat = 20
+    static let buttonRadius: CGFloat = 30
     static let buttonText = "WishButton"
+    
+    static let dist: CGFloat = 20
     
     
 }

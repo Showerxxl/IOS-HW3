@@ -12,6 +12,7 @@ final class WishMakerViewController: UIViewController {
         configureDescription()
         configureSliders()
         configureAddWishButton()
+        setupConstraints()
     }
 
     private func configureTitle() {
@@ -20,6 +21,10 @@ final class WishMakerViewController: UIViewController {
     
     private func configureDescription() {
         DescriptionView.configure(in: view, relativeTo: TitleView.titleLabel)
+    }
+    private func setupConstraints() {
+        let stack = view.subviews.first { $0 is UIStackView } as! UIStackView
+        stack.pinBottom(to: addWishButton.topAnchor, Constants.dist)
     }
 
     private func configureSliders() {
@@ -38,12 +43,9 @@ final class WishMakerViewController: UIViewController {
             stack.addArrangedSubview(slider)
         }
 
-        NSLayoutConstraint.activate([
-            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor), 
-            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.stackBottom)
-        ])
+        stack.pinLeft(to: view, Constants.stackSide)
+        stack.pinRight(to: view, Constants.stackSide)
+  
         
         var red: CGFloat = Constants.baseValue
         var green: CGFloat = Constants.baseValue
@@ -51,15 +53,15 @@ final class WishMakerViewController: UIViewController {
         
         sliderRed.valueChanged = { [weak self] value in
             red = CGFloat(value)
-            self?.view.backgroundColor = UIColor(red: CGFloat(value), green: green, blue: blue, alpha: 1)
+            self?.view.backgroundColor = UIColor(red: CGFloat(value), green: green, blue: blue, alpha: Constants.transparency)
         }
         sliderGreen.valueChanged = { [weak self] value in
             green = CGFloat(value)
-            self?.view.backgroundColor = UIColor(red: red, green: CGFloat(value), blue: blue, alpha: 1)
+            self?.view.backgroundColor = UIColor(red: red, green: CGFloat(value), blue: blue, alpha: Constants.transparency)
         }
         sliderBlue.valueChanged = { [weak self] value in
             blue = CGFloat(value)
-            self?.view.backgroundColor = UIColor(red: red, green: green, blue: CGFloat(value), alpha: 1)
+            self?.view.backgroundColor = UIColor(red: red, green: green, blue: CGFloat(value), alpha: Constants.transparency)
         }
     }
     
@@ -72,9 +74,9 @@ final class WishMakerViewController: UIViewController {
         
         addWishButton.backgroundColor = .white
         addWishButton.setTitleColor(.systemPink, for: .normal)
-        addWishButton.setTitle(Constants.buttonText, for: .normal)
-       
+        addWishButton.setTitle("Add Wish", for: .normal)
         addWishButton.layer.cornerRadius = Constants.buttonRadius
+        
         addWishButton.addTarget(self, action: #selector(addWishButtonPressed), for: .touchUpInside)
     }
     @objc
