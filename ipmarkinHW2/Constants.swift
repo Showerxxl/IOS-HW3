@@ -27,5 +27,6 @@ enum Constants {
     
     
     static let numberOfSections: Int = 2
+    static let wishesKey: String = "saved wish"
 }
 

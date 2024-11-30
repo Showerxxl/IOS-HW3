@@ -3,10 +3,11 @@ import UIKit
 final class WishStoringViewController: UIViewController {
     private let table: UITableView = UITableView(frame: .zero)
     private var wishArray: [String] = ["I wish to add cells to the table"]
-    
+    private let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
+        loadUserSavedWishes()
         configureTable()
     }
     
@@ -19,6 +20,14 @@ final class WishStoringViewController: UIViewController {
         table.frame = view.bounds
         table.register(AddWishCell.self, forCellReuseIdentifier: AddWishCell.reuseId)
         table.register(WrittenWishCell.self, forCellReuseIdentifier: WrittenWishCell.reuseId)
+    }
+    private func saveUserWishes() {
+        defaults.set(wishArray, forKey: Constants.wishesKey)
+    }
+    private func loadUserSavedWishes() {
+        if let savedWishes = defaults.array(forKey: Constants.wishesKey) as? [String] {
+               wishArray = savedWishes
+        }
     }
 }
 
@@ -42,6 +51,7 @@ extension WishStoringViewController: UITableViewDataSource {
             
             addWishCell.addWish = { [weak self] newWish in
                 self?.wishArray.append(newWish)
+                self?.saveUserWishes()
                 self?.table.reloadData()
             }
             return addWishCell
