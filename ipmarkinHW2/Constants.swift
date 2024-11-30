@@ -24,5 +24,8 @@ enum Constants {
     
     static let tableCornerRadius: CGFloat = 20
     static let tableOffset: CGFloat = 20
+    
+    
+    static let numberOfSections: Int = 2
 }
 
